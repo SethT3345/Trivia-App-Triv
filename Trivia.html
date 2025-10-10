@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnowledgeHub Header</title>
+    <script src="Trvia.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="Trivia.css">
+</head>
+<body>
+    <!--Header-->
+    <div class="w-[100vw] h-15 bg-white flex items-center justify-center shadow-lg border-b-2 border-gray-200">
+        <h1 class="text-3xl font-bold animated-text drop-shadow-lg">KnowledgeHub</h1>
+    </div>
+
+    <!--Trivia Content-->
+    <div class="w-full h-[93vh] bg-gradient-to-br from-blue-50 to-purple-50 flex justify-center items-center">
+        <div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+            <div class="text-center mb-8">
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question 1 of 10</span>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-6 leading-tight">
+                    Who is famous for wearing #24 on the LA Lakers?
+                </h2>
+            </div>
+            
+            <div class="mb-8">
+                <label for="answer" class="block text-lg font-medium text-gray-700 mb-3">Your Answer:</label>
+                <input 
+                    type="text" 
+                    id="answer" 
+                    name="answer"
+                    placeholder="Type your answer here..."
+                    class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 bg-gray-50 hover:bg-white"
+                >
+            </div>
+            
+            <div class="flex gap-4 justify-center">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Submit Answer
+                </button>
+                <button class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Skip Question
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
