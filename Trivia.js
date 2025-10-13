@@ -91,7 +91,6 @@ function nextQ(){
     localStorage.setItem(`useranswer${i}`, document.getElementById("answer").value);
 
     let nextQuestion = basketballQuiz.nextQuestion();
-    let prevQuestion = basketballQuiz.prevQuestion();
 
     if(nextQuestion.qn === 10){
         document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
@@ -156,7 +155,7 @@ function nextQ(){
                 <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Submit Answer
                 </button>
-                <button class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button onclick="nextQNA()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Next
                 </button>
             </div>
@@ -164,6 +163,161 @@ function nextQ(){
     }
 }
 
+
+function prevQ(){
+
+    let root = basketballQuiz.currentNode;
+
+    let prevQuestion = basketballQuiz.prevQuestion();
+
+    if(prevQuestion.qn === 1){
+        document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+            <div class="text-center mb-8">
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${prevQuestion.qn} of 10</span>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-6 leading-tight">
+                    ${prevQuestion.prompt}
+                </h2>
+            </div>
+            
+            <div class="mb-8">
+                <label for="answer" class="block text-lg font-medium text-gray-700 mb-3">Your Answer:</label>
+                <input 
+                    type="text" 
+                    id="answer" 
+                    name="answer"
+                    placeholder="Type your answer here..."
+                    class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 bg-gray-50 hover:bg-white"
+                >
+            </div>
+            
+            <div class="flex gap-4 justify-center">
+                <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Submit Answer
+                </button>
+                <button onclick="nextQNA()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Next
+                </button>
+            </div>
+        </div>`
+    }
+    else{
+    document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+            <div class="text-center mb-8">
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${prevQuestion.qn} of 10</span>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-6 leading-tight">
+                    ${prevQuestion.prompt}
+                </h2>
+            </div>
+            
+            <div class="mb-8">
+                <label for="answer" class="block text-lg font-medium text-gray-700 mb-3">Your Answer:</label>
+                <input 
+                    type="text" 
+                    id="answer" 
+                    name="answer"
+                    placeholder="Type your answer here..."
+                    class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 bg-gray-50 hover:bg-white"
+                >
+            </div>
+            
+            <div class="flex gap-4 justify-center">
+                <button onclick="prevQ()" class="bg-gray-400 hover:bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Previous
+                </button>
+                <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Submit Answer
+                </button>
+                <button onclick="nextQNA()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Next
+                </button>
+            </div>
+        </div>`
+    }
+}
+
+
+function nextQNA(){
+
+    let root = basketballQuiz.currentNode;
+
+    let nextQuestion = basketballQuiz.nextQuestion();
+
+    if(nextQuestion.qn === 10){
+        document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+            <div class="text-center mb-8">
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of 10</span>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-6 leading-tight">
+                    ${nextQuestion.prompt}
+                </h2>
+            </div>
+            
+            <div class="mb-8">
+                <label for="answer" class="block text-lg font-medium text-gray-700 mb-3">Your Answer:</label>
+                <input 
+                    type="text" 
+                    id="answer" 
+                    name="answer"
+                    placeholder="Type your answer here..."
+                    class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 bg-gray-50 hover:bg-white"
+                >
+            </div>
+            
+            <div class="flex gap-4 justify-center">
+                <button onclick="prevQ()" class="bg-gray-400 hover:bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Previous
+                </button>
+                <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Submit Test
+                </button>
+            </div>
+        </div>`
+    }
+    else {
+    document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+            <div class="text-center mb-8">
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of 10</span>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-6 leading-tight">
+                    ${nextQuestion.prompt}
+                </h2>
+            </div>
+            
+            <div class="mb-8">
+                <label for="answer" class="block text-lg font-medium text-gray-700 mb-3">Your Answer:</label>
+                <input 
+                    type="text" 
+                    id="answer" 
+                    name="answer"
+                    placeholder="Type your answer here..."
+                    class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 bg-gray-50 hover:bg-white"
+                >
+            </div>
+            
+            <div class="flex gap-4 justify-center">
+                <button onclick="prevQ()" class="bg-gray-400 hover:bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Previous
+                </button>
+                <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Submit Answer
+                </button>
+                <button onclick="nextQNA()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Next
+                </button>
+            </div>
+        </div>`
+    }
+}
 
 /*
   <div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
