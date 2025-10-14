@@ -119,7 +119,7 @@ function nextQ(){
                 <button onclick="prevQ()" class="bg-gray-400 hover:bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Previous
                 </button>
-                <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button onclick="submit()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Submit Test
                 </button>
             </div>
@@ -275,7 +275,7 @@ function nextQNA(){
                 <button onclick="prevQ()" class="bg-gray-400 hover:bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Previous
                 </button>
-                <button onclick="nextQ()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button onclick="submit()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Submit Test
                 </button>
             </div>
@@ -319,38 +319,46 @@ function nextQNA(){
     }
 }
 
-/*
-  <div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+function submit(){
+    // Save the current answer before calculating score
+    let currentAnswer = document.getElementById("answer").value;
+    if(currentAnswer) {
+        localStorage.setItem('useranswer10', currentAnswer);
+        window.useranswer10 = currentAnswer;
+    }
+    
+    let score = 0;
+    let questions = [BQ1, BQ2, BQ3, BQ4, BQ5, BQ6, BQ7, BQ8, BQ9, BQ10];
+
+    for(let i = 1; i <= 10; i++){
+        let userAnswer = localStorage.getItem(`useranswer${i}`);
+        let correctAnswer = questions[i-1].answer;
+        
+        if(userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()){
+            score += 1;
+        }
+    }
+    
+    document.getElementById("QuestionPage").innerHTML = `
+        <div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
             <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question 1 of 10</span>
+                <h1 class="text-5xl font-bold text-gray-800 mb-4">Quiz Complete!</h1>
+                <div class="text-6xl font-bold ${score >= 7 ? 'text-green-600' : score >= 5 ? 'text-yellow-600' : 'text-red-600'} mb-4">
+                    ${score}/10
+                </div>
+                <p class="text-xl text-gray-600">
+                    ${score >= 9 ? 'Excellent!' : score >= 7 ? 'Great job!' : score >= 5 ? 'Good effort!' : 'Keep practicing!'}
+                </p>
             </div>
             
-            <div class="mb-8">
-                <h2 class="text-4xl font-bold text-gray-800 text-center mb-6 leading-tight">
-                    Who is famous for wearing #24 on the LA Lakers? (Full Name)
-                </h2>
-            </div>
-            
-            <div class="mb-8">
-                <label for="answer" class="block text-lg font-medium text-gray-700 mb-3">Your Answer:</label>
-                <input 
-                    type="text" 
-                    id="answer" 
-                    name="answer"
-                    placeholder="Type your answer here..."
-                    class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 bg-gray-50 hover:bg-white"
-                >
-            </div>
-            
-            <div class="flex gap-4 justify-center">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Submit Answer
-                </button>
-                <button class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Skip Question
+            <div class="text-center">
+                <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Take Quiz Again
                 </button>
             </div>
         </div>
-*/
-
-//clear when reloaded
+    `;
+    
+    console.log(`Your score: ${score}/10`);
+    return score;
+}
