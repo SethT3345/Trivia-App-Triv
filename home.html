@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="cool.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 h-screen flex flex-col">
+    <header class="bg-white shadow-md border-b border-gray-200 flex-shrink-0">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-bold animated-text drop-shadow-lg
+             leading-relaxed text-center py-6">KnowledgeHub</h1>
+        </div>
+    </header>
+
+    <main class="flex-1 p-6">
+        <div class="h-full grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Box 1: JavaScript Quiz -->
+            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
+                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700">JavaScript Quiz</h2>
+                <img src="https://via.placeholder.com/150x100/4F46E5/FFFFFF?text=JS" alt="JavaScript Quiz" class="rounded-md shadow-sm">
+                <a href="jsquiz.html" class="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors font-semibold">Start Now</a>
+            </div>
+            
+            <!-- Box 2: Basketball Quiz -->
+            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
+                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700">Basketball Quiz</h2>
+                <img src="https://via.placeholder.com/150x100/FF6B35/FFFFFF?text=NBA" alt="Basketball Quiz" class="rounded-md shadow-sm">
+                <a href="basketballquiz.html" class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition-colors font-semibold">Start Now</a>
+            </div>
+            
+            <!-- Box 3: Flash Cards -->
+            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
+                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700">Flash Cards</h2>
+                <img src="https://via.placeholder.com/150x100/10B981/FFFFFF?text=CARDS" alt="Flashcards" class="rounded-md shadow-sm">
+                <a href="flashcards.html" class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition-colors font-semibold">Start Now</a>
+            </div>
+            
+            <!-- Box 4: Coming Soon -->
+            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
+                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700">Coming Soon</h2>
+                <img src="https://via.placeholder.com/150x100/9333EA/FFFFFF?text=SOON" alt="Coming Soon" class="rounded-md shadow-sm">
+                <button disabled class="bg-gray-400 text-white px-6 py-3 rounded-md hover:bg-black font-semibold">Coming Soon</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

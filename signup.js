@@ -2,7 +2,7 @@ function handleSignup(){
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     
-    // Get existing users from localStorage
+
     const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
     const userExists = existingUsers.find(user => user.username === username);
     if(userExists){
@@ -24,7 +24,6 @@ function handleSignup(){
     existingUsers.push(newUser);
     localStorage.setItem('users', JSON.stringify(existingUsers));
     
-    localStorage.setItem('currentUser', JSON.stringify(newUser));
     
     alert("Account created successfully!");
 
