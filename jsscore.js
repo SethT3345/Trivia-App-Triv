@@ -15,9 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add message based on score
     const messageEl = document.getElementById('scoreMessage');
-    if (percentage >= 90) {
-        messageEl.textContent = 'Outstanding! 🎉';
+    if (percentage >= 100) {
+        messageEl.textContent = 'Perfect Score! 🎉';
         messageEl.className = 'text-2xl font-bold text-green-600 mt-4';
+    } else if (percentage >= 90) {
+        messageEl.textContent = 'Outstanding! 🌟';
+        messageEl.className = 'text-2xl font-bold text-green-500 mt-4';
     } else if (percentage >= 70) {
         messageEl.textContent = 'Great job! 👏';
         messageEl.className = 'text-2xl font-bold text-blue-600 mt-4';

@@ -1,4 +1,3 @@
-const QuestionText = document.getElementById("question");
 class DoubleLinkedNode {
     constructor(q){
         this.question = q.question
@@ -19,7 +18,6 @@ class DoubleLinkedList {
         const newNode = new DoubleLinkedNode(q);
         if(this.head == null){
             this.head = this.tail = this.current = newNode;
-            QuestionText.textContent = this.current.question;
         }else{
             this.tail.next = newNode;
             newNode.prev = this.tail;
@@ -30,20 +28,18 @@ class DoubleLinkedList {
     goNext() {
         if(this.current && this.current.next) {
             this.current = this.current.next;
-            QuestionText.textContent = this.current.question;
             return true;
         }
         return false;
     }
 
     goPrev() {
-		if (this.current && this.current.prev) {
-			this.current = this.current.prev;
-            QuestionText.textContent = this.current.question;
-			return true;
-		}
-		return false;
-	}
+        if (this.current && this.current.prev) {
+            this.current = this.current.prev;
+            return true;
+        }
+        return false;
+    }
     currentIndex(){
         let idx = 0;
         let node = this.head;
@@ -54,25 +50,6 @@ class DoubleLinkedList {
         return idx
     }
 }
-
-const QList = new DoubleLinkedList();
-
-
-const answerButtons = document.getElementsByClassName("answer");
-
-Array.from(answerButtons).forEach((button) => {
-  button.addEventListener("click", function () {
-    const answer = button.textContent;
-    const correctAnswer = QList.current?.answer
-    console.log("Answer button clicked!", answer === correctAnswer);
-    if (answer === correctAnswer){
-        QList.goNext();
-    }else{
-        alert("Wrong")
-    }
-  });
-});
-console.log("Loaded", answerButtons)
 
 const chainQuestions = [
   {
@@ -128,7 +105,7 @@ const chainQuestions = [
     answer: "6'6"
   },
   {
-    question: "Which NBA legend is 6'6\" tall?",
+    question: "Which NBA legend that wears 23 is 6'6 tall?",
     answer: "Michael Jordan"
   },
   {
@@ -136,7 +113,7 @@ const chainQuestions = [
     answer: "Shaquille O'Neal"
   },
   {
-    question: "Which NBA duo has been name-dropped in rap songs more than any other?",
+    question: "His NBA dynamic duo has been name dropped in rap songs more than anyone else out of any Athlete?",
     answer: "Kobe Bryant"
   },
   {
@@ -149,19 +126,19 @@ const chainQuestions = [
   },
   {
     question: "Who is Jay-Z married to?",
-    answer: "Beyoncé"
+    answer: "Beyonce"
   },
   {
-    question: "Who has the most Grammy awards of all time?",
-    answer: "Beyoncé"
+    question: "She has the most ___?",
+    answer: "Grammys"
   },
   {
     question: "Who holds the record for most Grammys won in one night?",
     answer: "Michael Jackson"
   },
   {
-    question: "Which artist had an iconic Super Bowl halftime performance?",
-    answer: "Michael Jackson"
+    question: "Who held an iconic show in 1993 at the?",
+    answer: "Superbowl"
   },
   {
     question: "Who won last year's Super Bowl?",
@@ -169,11 +146,11 @@ const chainQuestions = [
   },
   {
     question: "Which team did the Eagles beat in that Super Bowl?",
-    answer: "Chiefs"
+    answer: "The Chiefs"
   },
   {
-    question: "Which Chiefs tight end is engaged to Taylor Swift?",
-    answer: "Travis Kelce"
+    question: "Whose star tight end is Engaged to?",
+    answer: "Taylor Swift"
   },
   {
     question: "How many studio albums does Taylor Swift have?",
@@ -211,6 +188,60 @@ const chainQuestions = [
     question: "Who created the album 'Donda'?",
     answer: "Kanye West"
   }
-
 ];
-chainQuestions.forEach(q => QList.AddQuestion(q))
+
+document.addEventListener('DOMContentLoaded', function() {
+    const QuestionText = document.getElementById("question");
+    const QList = new DoubleLinkedList();
+    chainQuestions.forEach(q => QList.AddQuestion(q));
+    if (QList.current) {
+        QuestionText.textContent = QList.current.question;
+    }
+    const answerButtons = document.getElementsByClassName("answer");
+    let score = 0;
+    
+    console.log("Found", answerButtons.length, "answer buttons");
+    
+    Array.from(answerButtons).forEach((button) => {
+        button.addEventListener("click", function () {
+            const answer = button.textContent.trim();
+            const correctAnswer = QList.current?.answer;
+            
+            // Disable ONLY the clicked button permanently
+            this.disabled = true;
+            this.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Turn clicked button grey permanently
+            const colorClasses = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500', 
+                                   'bg-blue-500', 'bg-indigo-500', 'bg-purple-500', 'bg-pink-500'];
+            colorClasses.forEach(cls => this.classList.remove(cls));
+            this.classList.add('bg-gray-500');
+            
+            console.log("Raw button text:", `'${button.textContent}'`);
+            console.log("Trimmed answer:", `'${answer}'`);
+            console.log("Correct answer:", `'${correctAnswer}'`);
+            console.log("Match:", answer === correctAnswer);
+            setTimeout(() => {
+                if (answer === correctAnswer) {
+                    score += 1;
+                    console.log("✅ Correct! Score:", score);
+                    if (QList.currentIndex() === QList.length - 1) {
+                        localStorage.setItem('quizScore', score);
+                        localStorage.setItem('quizTotal', QList.length);
+                        window.location.href = "jsquizscore.html";
+                    } else {
+                        QList.goNext();
+                        if (QList.current) {
+                            QuestionText.textContent = QList.current.question;
+                        }
+                    }
+                } else {
+                    console.log("❌ Wrong answer");
+                    localStorage.setItem('quizScore', score);
+                    localStorage.setItem('quizTotal', QList.length);
+                    window.location.href = "failed.html";
+                }
+            }, 500);
+        });
+    });
+});

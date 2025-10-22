@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="cool.css">
+</head>
+<body class="bg-white min-h-screen">
+    <header class="bg-white shadow-md border-b border-gray-200 flex-shrink-0">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-bold animated-text drop-shadow-lg leading-relaxed text-center py-6">KnowledgeHub</h1>
+        </div>
+    </header>
+
+    <!-- Game Container -->
+    <div class="max-w-lg mx-auto px-4 py-8">
+        <!-- Game Grid -->
+        <div id="gameGrid" class="mb-8">
+            <!-- 6 rows of 5 boxes will be created here -->
+        </div>
+
+        <!-- Message -->
+        <p id="message" class="text-center text-gray-900 text-xl font-semibold min-h-8"></p>
+    </div>
+
+    <!-- Keyboard -->
+    <div class="max-w-2xl mx-auto px-4 mb-8">
+        <!-- Row 1 -->
+        <div class="flex justify-center gap-1 mb-2">
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="Q">Q</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="W">W</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="E">E</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="R">R</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="T">T</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="Y">Y</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="U">U</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="I">I</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="O">O</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="P">P</button>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="flex justify-center gap-1 mb-2">
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="A">A</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="S">S</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="D">D</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="F">F</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="G">G</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="H">H</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="J">J</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="K">K</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="L">L</button>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="flex justify-center gap-1">
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-6 rounded text-xs transition-colors" id="enterBtn">ENTER</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="Z">Z</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="X">X</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="C">C</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="V">V</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="B">B</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="N">N</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="M">M</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-6 rounded text-sm transition-colors" id="backspaceBtn">⌫</button>
+        </div>
+    </div>
+
+    <!-- Scores at Bottom -->
+    <footer class="fixed bottom-8 left-0 right-0 bg-white border-t border-gray-200 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Red Score (Left) -->
+                <div class="text-3xl font-bold text-red-500">
+                    <div class="flex items-center gap-3">
+                        <h1>Red Score:</h1>
+                        <span id="redScore">0</span>
+                    </div>
+                </div>
+                
+                <!-- Blue Score (Right) -->
+                <div class="text-3xl font-bold text-blue-500">
+                    <div class="flex items-center gap-3">
+                        <h1>Blue Score:</h1>
+                        <span id="blueScore">0</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md mx-4">
+            <h2 id="gameOverTitle" class="text-3xl font-bold text-center mb-4"></h2>
+            <p id="gameOverMessage" class="text-xl text-center mb-6"></p>
+            <button 
+                id="playAgainBtn"
+                class="w-full bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-all transform hover:scale-105"
+            >
+                Play Again
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .tile {
+            width: 62px;
+            height: 62px;
+            border: 2px solid #d1d5db;
+            background-color: transparent;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+            transition: all 0.2s;
+        }
+        .tile-filled {
+            border-color: #6b7280;
+            animation: pop 0.1s ease;
+        }
+        .tile-correct {
+            background-color: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        .tile-present {
+            background-color: #eab308;
+            border-color: #eab308;
+            color: white;
+        }
+        .tile-absent {
+            background-color: #4b5563;
+            border-color: #4b5563;
+            color: white;
+        }
+        @keyframes flip {
+            0% { transform: rotateX(0); }
+            50% { transform: rotateX(90deg); }
+            100% { transform: rotateX(0); }
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .flip {
+            animation: flip 0.5s ease;
+        }
+    </style>
+
+    <script src="wordle.js"></script>
+</body>
+</html>
