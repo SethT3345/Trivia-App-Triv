@@ -16,6 +16,11 @@
 
     <!-- Game Container -->
     <div class="max-w-lg mx-auto px-4 py-8">
+        <!-- Turn Indicator -->
+        <div class="text-center mb-4">
+            <h2 id="turnIndicator" class="text-3xl font-bold">Player's Turn</h2>
+        </div>
+
         <!-- Game Grid -->
         <div id="gameGrid" class="mb-8">
             <!-- 6 rows of 5 boxes will be created here -->
@@ -53,8 +58,6 @@
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="K">K</button>
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="L">L</button>
         </div>
-
-        <!-- Row 3 -->
         <div class="flex justify-center gap-1">
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-6 rounded text-xs transition-colors" id="enterBtn">ENTER</button>
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-3 rounded min-w-[43px] text-sm transition-colors key-btn" data-key="Z">Z</button>
@@ -67,32 +70,20 @@
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 px-6 rounded text-sm transition-colors" id="backspaceBtn">⌫</button>
         </div>
     </div>
-
-    <!-- Scores at Bottom -->
-    <footer class="fixed bottom-8 left-0 right-0 bg-white border-t border-gray-200 py-6">
+    <div class="fixed bottom-4 left-0 right-0 py-4">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
-                <!-- Red Score (Left) -->
-                <div class="text-3xl font-bold text-red-500">
-                    <div class="flex items-center gap-3">
-                        <h1>Red Score:</h1>
-                        <span id="redScore">0</span>
-                    </div>
+                <div class="text-3xl font-bold text-red-500 flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-md">
+                    <h1>Red Score:</h1>
+                    <span id="redScore">0</span>
                 </div>
-                
-                <!-- Blue Score (Right) -->
-                <div class="text-3xl font-bold text-blue-500">
-                    <div class="flex items-center gap-3">
-                        <h1>Blue Score:</h1>
-                        <span id="blueScore">0</span>
-                        
-                    </div>
+                <div class="text-3xl font-bold text-blue-500 flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-md">
+                    <h1>Blue Score:</h1>
+                    <span id="blueScore">0</span>
                 </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Game Over Modal -->
+    </div>
     <div id="gameOverModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md mx-4">
             <h2 id="gameOverTitle" class="text-3xl font-bold text-center mb-4"></h2>
@@ -101,7 +92,7 @@
                 id="playAgainBtn"
                 class="w-full bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-all transform hover:scale-105"
             >
-                Play Again
+                Next Round
             </button>
         </div>
     </div>
@@ -125,21 +116,51 @@
             border-color: #6b7280;
             animation: pop 0.1s ease;
         }
-        .tile-correct {
-            background-color: #10b981;
-            border-color: #10b981;
+        
+        /* Active row border colors */
+        .tile-active-blue {
+            border-color: #3b82f6;
+            border-width: 3px;
+        }
+        .tile-active-red {
+            border-color: #ef4444;
+            border-width: 3px;
+        }
+        
+        /* Blue player tiles */
+        .tile-correct-blue {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
             color: white;
         }
-        .tile-present {
-            background-color: #eab308;
-            border-color: #eab308;
+        .tile-present-blue {
+            background-color: #60a5fa;
+            border-color: #60a5fa;
             color: white;
         }
-        .tile-absent {
-            background-color: #4b5563;
-            border-color: #4b5563;
+        .tile-absent-blue {
+            background-color: #1e3a8a;
+            border-color: #1e3a8a;
             color: white;
         }
+        
+        /* Red player tiles */
+        .tile-correct-red {
+            background-color: #ef4444;
+            border-color: #ef4444;
+            color: white;
+        }
+        .tile-present-red {
+            background-color: #f87171;
+            border-color: #f87171;
+            color: white;
+        }
+        .tile-absent-red {
+            background-color: #991b1b;
+            border-color: #991b1b;
+            color: white;
+        }
+        
         @keyframes flip {
             0% { transform: rotateX(0); }
             50% { transform: rotateX(90deg); }

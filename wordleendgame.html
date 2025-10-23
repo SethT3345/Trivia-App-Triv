@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over - Wordle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="cool.css">
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center">
+    <div class="text-center">
+        <!-- Winner Display -->
+        <div id="winnerDisplay" class="mb-8">
+            <h1 id="winnerTitle" class="text-7xl font-bold mb-4 animated-text">Winner!</h1>
+            <p id="finalScore" class="text-4xl font-semibold mb-8"></p>
+        </div>
+
+        <!-- Confetti/Trophy -->
+        <div class="text-8xl mb-8">
+            🏆
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-4 justify-center">
+            <button 
+                id="playAgainBtn"
+                class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg hover:bg-green-600 transition-all transform hover:scale-105 text-xl"
+            >
+                Play Again
+            </button>
+            <button 
+                id="homeBtn"
+                class="bg-red-500 text-white font-bold py-4 px-8 rounded-lg hover:bg-red-600 transition-all transform hover:scale-105 text-xl"
+            >
+                Home
+            </button>
+        </div>
+    </div>
+
+    <script src="wordleEndGame.js"></script>
+</body>
+</html>

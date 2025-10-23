@@ -1,4 +1,4 @@
-// Word list - you can expand this
+// Word list
 const WORDS = [
     'ABOUT', 'ABOVE', 'ABUSE', 'ACTOR', 'ACUTE', 'ADMIT', 'ADOPT', 'ADULT', 'AFTER', 'AGAIN',
     'AGENT', 'AGREE', 'AHEAD', 'ALARM', 'ALBUM', 'ALERT', 'ALIKE', 'ALIVE', 'ALLOW', 'ALONE',
@@ -23,30 +23,62 @@ const WORDS = [
     'GUEST', 'GUIDE', 'HAPPY', 'HARRY', 'HEART', 'HEAVY', 'HENCE', 'HENRY', 'HORSE', 'HOTEL',
     'HOUSE', 'HUMAN', 'IDEAL', 'IMAGE', 'INDEX', 'INNER', 'INPUT', 'ISSUE', 'JAPAN', 'JIMMY',
     'JOINT', 'JONES', 'JUDGE', 'KNOWN', 'LABEL', 'LARGE', 'LASER', 'LATER', 'LAUGH', 'LAYER',
-    'LEARN', 'LEASE', 'LEAST', 'LEAVE', 'LEGAL', 'LEMON', 'LEVEL', 'LEWIS', 'LIGHT', 'LIMIT',
-    'LINKS', 'LIVES', 'LOCAL', 'LOGIC', 'LOOSE', 'LOWER', 'LUCKY', 'LUNCH', 'LYING', 'MAGIC',
-    'MAJOR', 'MAKER', 'MARCH', 'MARIA', 'MATCH', 'MAYBE', 'MAYOR', 'MEANT', 'MEDIA', 'METAL',
-    'MIGHT', 'MINOR', 'MINUS', 'MIXED', 'MODEL', 'MONEY', 'MONTH', 'MORAL', 'MOTOR', 'MOUNT',
-    'MOUSE', 'MOUTH', 'MOVED', 'MOVIE', 'MUSIC', 'NEEDS', 'NEVER', 'NEWLY', 'NIGHT', 'NOISE',
-    'NORTH', 'NOTED', 'NOVEL', 'NURSE', 'OCCUR', 'OCEAN', 'OFFER', 'OFTEN', 'ORDER', 'OTHER',
-    'OUGHT', 'PAINT', 'PANEL', 'PAPER', 'PARTY', 'PEACE', 'PETER', 'PHASE', 'PHONE', 'PHOTO'
+    'LEARN', 'LEASE', 'LEAST', 'LEAVE', 'LEGAL', 'LEMON', 'LEVEL', 'LEWIS', 'LIGHT', 'LIMIT'
 ];
 
 let targetWord;
 let currentGuess = '';
 let currentRow = 0;
-const MAX_GUESSES = 6;
+const MAX_GUESSES = 8;
 let gameOver = false;
+let currentGame = 1;
+const maxGames = 5;
+let redScore = 0;
+let blueScore = 0;
+let blueTurn = false;
+let redTurn = false;
+let blueWin = false
+let redWin = false
 
 document.addEventListener('DOMContentLoaded', () => {
     initGame();
 });
 
+// Load scores from local storage when page loads
+function loadScores() {
+    const savedRedScore = localStorage.getItem('redScore');
+    const savedBlueScore = localStorage.getItem('blueScore');
+    const savedCurrentGame = localStorage.getItem('currentGame');
+    
+    if (savedRedScore !== null) {
+        redScore = parseInt(savedRedScore);
+    }
+    if (savedBlueScore !== null) {
+        blueScore = parseInt(savedBlueScore);
+    }
+    if (savedCurrentGame !== null) {
+        currentGame = parseInt(savedCurrentGame);
+    }
+    
+    // Update score display
+    document.getElementById('redScore').textContent = redScore;
+    document.getElementById('blueScore').textContent = blueScore;
+}
+
+// Save scores to local storage
+function saveScores() {
+    localStorage.setItem('redScore', redScore);
+    localStorage.setItem('blueScore', blueScore);
+    localStorage.setItem('currentGame', currentGame);
+}
+
 function initGame() {
     targetWord = WORDS[Math.floor(Math.random() * WORDS.length)];
-    console.log('Target word:', targetWord); // For testing
+    console.log('Target word:', targetWord);
     createGrid();
     setupKeyboard();
+    loadScores();
+    handleGame();
 }
 
 function createGrid() {
@@ -56,7 +88,6 @@ function createGrid() {
     for (let i = 0; i < MAX_GUESSES; i++) {
         const row = document.createElement('div');
         row.className = 'flex justify-center gap-2 mb-2';
-        row.id = `row-${i}`;
         
         for (let j = 0; j < 5; j++) {
             const tile = document.createElement('div');
@@ -70,6 +101,24 @@ function createGrid() {
 }
 
 function setupKeyboard() {
+    const keyButtons = document.querySelectorAll('.key-btn');
+    const enterBtn = document.getElementById('enterBtn');
+    const backspaceBtn = document.getElementById('backspaceBtn');
+    
+    keyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (!gameOver) handleKeyPress(btn.dataset.key);
+        });
+    });
+    
+    enterBtn.addEventListener('click', () => {
+        if (!gameOver) submitGuess();
+    });
+    
+    backspaceBtn.addEventListener('click', () => {
+        if (!gameOver) handleBackspace();
+    });
+    
     document.addEventListener('keydown', (e) => {
         if (gameOver) return;
         
@@ -107,6 +156,15 @@ function updateGrid() {
             tile.textContent = '';
             tile.classList.remove('tile-filled');
         }
+        
+        // Add background color to current row tiles based on whose turn it is
+        if (blueTurn) {
+            tile.style.backgroundColor = '#1a65c8ff';
+            tile.style.borderColor = '#b3b9c2ff';
+        } else if (redTurn) {
+            tile.style.backgroundColor = '#ef2222ff';
+            tile.style.borderColor = '#ab9696ff';
+        }
     }
 }
 
@@ -115,6 +173,7 @@ function submitGuess() {
         showMessage('Not enough letters');
         return;
     }
+    
     checkGuess();
 }
 
@@ -145,12 +204,70 @@ function checkGuess() {
     for (let i = 0; i < 5; i++) {
         const tile = document.getElementById(`tile-${currentRow}-${i}`);
         setTimeout(() => {
+            // Remove the light background colors but keep border
+            tile.style.backgroundColor = '';
+            
             tile.classList.add('flip');
-            tile.classList.add(`tile-${result[i]}`);
+            
+            // Add normal Wordle colors (green, yellow, gray)
+            if (result[i] === 'correct') {
+                tile.style.backgroundColor = '#10b981'; // Green
+            } else if (result[i] === 'present') {
+                tile.style.backgroundColor = '#eab308'; // Yellow
+            } else {
+                tile.style.backgroundColor = '#4b5563'; // Gray
+            }
+            
+            // Add team color border
+            if (blueTurn) {
+                tile.style.borderColor = '#3b82f6'; // Blue border
+                tile.style.borderWidth = '3px';
+            } else if (redTurn) {
+                tile.style.borderColor = '#ef4444'; // Red border
+                tile.style.borderWidth = '3px';
+            }
+            
+            tile.style.color = 'white';
+            
+            updateKeyboardButton(guessLetters[i], result[i]);
         }, i * 300);
     }
     
     setTimeout(() => {
+        // Check if they guessed the word correctly and add score
+        if (currentGuess === targetWord) {
+            if (blueTurn) {
+                blueScore += 1;
+            } else if (redTurn) {
+                redScore += 1;
+            }
+        }
+        
+        document.getElementById('redScore').textContent = redScore;
+        document.getElementById('blueScore').textContent = blueScore;
+        
+        saveScores();
+        
+        // Check if either player has won (reached 3 points)
+        if (blueScore >= 3) {
+            blueWin = true;
+            localStorage.setItem('blueWin', 'true');
+            localStorage.setItem('redWin', 'false');
+            setTimeout(() => {
+                window.location.href = "wordleendgame.html";
+            }, 1000);
+            return;
+        }
+        if (redScore >= 3) {
+            redWin = true;
+            localStorage.setItem('redWin', 'true');
+            localStorage.setItem('blueWin', 'false');
+            setTimeout(() => {
+                window.location.href = "wordleendgame.html";
+            }, 1000);
+            return;
+        }
+        
         if (currentGuess === targetWord) {
             endGame(true);
         } else if (currentRow === MAX_GUESSES - 1) {
@@ -158,8 +275,34 @@ function checkGuess() {
         } else {
             currentRow++;
             currentGuess = '';
+            handleGame();
         }
     }, 1500);
+}
+
+function updateKeyboardButton(letter, status) {
+    const keyButton = document.querySelector(`[data-key="${letter}"]`);
+    if (!keyButton) return;
+    
+    const currentStatus = keyButton.dataset.status;
+    
+    if (currentStatus === 'correct') return;
+    if (currentStatus === 'present' && status === 'absent') return;
+    
+    keyButton.classList.remove('bg-gray-300', 'hover:bg-gray-400', 'bg-gray-600', 'hover:bg-gray-700', 'bg-yellow-500', 'hover:bg-yellow-600', 'bg-green-500', 'hover:bg-green-600');
+    keyButton.classList.remove('text-gray-800');
+    keyButton.classList.add('text-white');
+    
+    if (status === 'correct') {
+        keyButton.classList.add('bg-green-500', 'hover:bg-green-600');
+        keyButton.dataset.status = 'correct';
+    } else if (status === 'present') {
+        keyButton.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+        keyButton.dataset.status = 'present';
+    } else if (status === 'absent') {
+        keyButton.classList.add('bg-gray-600', 'hover:bg-gray-700');
+        keyButton.dataset.status = 'absent';
+    }
 }
 
 function showMessage(text) {
@@ -172,19 +315,110 @@ function showMessage(text) {
 
 function endGame(won) {
     gameOver = true;
-    const gameOverModal = document.getElementById('gameOverModal');
-    const gameOverTitle = document.getElementById('gameOverTitle');
-    const gameOverMessage = document.getElementById('gameOverMessage');
+    currentGame += 1; // Increment game number
+    saveScores(); // Save the new game number (including currentGame)
     
     setTimeout(() => {
+        const modal = document.getElementById('gameOverModal');
+        const title = document.getElementById('gameOverTitle');
+        const message = document.getElementById('gameOverMessage');
+        
         if (won) {
-            gameOverTitle.textContent = '🎉 You Won!';
-            gameOverMessage.textContent = `You guessed it in ${currentRow + 1} ${currentRow === 0 ? 'try' : 'tries'}!`;
+            if (blueTurn === true) {
+                title.textContent = `Blue Won! Blue Score: ${blueScore}, Red Score: ${redScore}`;
+                message.textContent = `You guessed it in ${currentRow + 1} tries!`;
+            } else if (redTurn === true) {
+                title.textContent = `Red Won! Blue Score: ${blueScore}, Red Score: ${redScore}`;
+                message.textContent = `You guessed it in ${currentRow + 1} tries!`;
+            }
         } else {
-            gameOverTitle.textContent = '😞 Game Over';
-            gameOverMessage.textContent = `The word was: ${targetWord}`;
+            title.textContent = 'Game Over No one Won';
+            message.textContent = `The word was: ${targetWord}`;
         }
-        gameOverModal.classList.remove('hidden');
+        
+        modal.classList.remove('hidden');
+    }, 2000);
+}
+
+function handleGame(){
+    if (currentGame > 5){
+        window.location.href = "wordleendgame.html";
+        return;
+    }
+    
+    // Game 1, 3, 5 (odd): Blue starts
+    // Game 2, 4 (even): Red starts
+    if (currentGame % 2 === 1) {
+        // Odd games: Blue starts on row 0, Red on row 1, etc.
+        if (currentRow % 2 === 0) {
+            blueTurn = true;
+            redTurn = false;
+        } else {
+            blueTurn = false;
+            redTurn = true;
+        }
+    } else {
+        // Even games: Red starts on row 0, Blue on row 1, etc.
+        if (currentRow % 2 === 0) {
+            blueTurn = false;
+            redTurn = true;
+        } else {
+            blueTurn = true;
+            redTurn = false;
+        }
+    }
+    
+    const turnIndicator = document.getElementById('turnIndicator');
+    if (blueTurn) {
+        turnIndicator.textContent = "Blue Player's Turn";
+        turnIndicator.className = "text-3xl font-bold text-blue-500";
+    } else {
+        turnIndicator.textContent = "Red Player's Turn";
+        turnIndicator.className = "text-3xl font-bold text-red-500";
+    }
+    
+    colorCurrentRow();
+    
+    console.log('Game:', currentGame, 'Row:', currentRow, 'Blue:', blueTurn, 'Red:', redTurn);
+}
+
+function colorCurrentRow() {
+    for (let i = 0; i < 5; i++) {
+        const tile = document.getElementById(`tile-${currentRow}-${i}`);
+        if (blueTurn) {
+            tile.style.backgroundColor = '#2382ffff';
+            tile.style.borderColor = '#f6f6f6ff';
+        } else if (redTurn) {
+            tile.style.backgroundColor = '#f81717ff';
+            tile.style.borderColor = '#b0b0b0ff';
+        }
+    }
+}
+
+function announceWinner() {
+    gameOver = true;
+    
+    setTimeout(() => {
+        const modal = document.getElementById('gameOverModal');
+        const title = document.getElementById('gameOverTitle');
+        const message = document.getElementById('gameOverMessage');
+        
+        if (blueScore >= 3) {
+            title.textContent = '🎉 Blue Player Wins!';
+            message.textContent = `Final Score - Blue: ${blueScore}, Red: ${redScore}`;
+            title.className = 'text-3xl font-bold text-center mb-4 text-blue-500';
+        } else {
+            title.textContent = '🎉 Red Player Wins!';
+            message.textContent = `Final Score - Red: ${redScore}, Blue: ${blueScore}`;
+            title.className = 'text-3xl font-bold text-center mb-4 text-red-500';
+        }
+        
+        // Reset scores AND game counter in localStorage
+        localStorage.setItem('redScore', 0);
+        localStorage.setItem('blueScore', 0);
+        localStorage.setItem('currentGame', 1);
+        
+        modal.classList.remove('hidden');
     }, 2000);
 }
 
