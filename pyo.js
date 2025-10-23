@@ -52,13 +52,22 @@ class Question{
 }
 
 let pyoQuiz = new Questions;
-let qi; // Declare qi globally
+let qi; 
+let totalQuestions;
 
 addEventListener('load', function(){
-    qi = localStorage.getItem('qi'); // Assign value to global qi
+    qi = localStorage.getItem('qi'); 
+    totalQuestions = parseInt(qi) - 1;
+
+    let quizId = localStorage.getItem("currentQuizId");
+    let quizName = JSON.parse(localStorage.getItem('userQuizName') || '"Untitled Quiz"');
+
+    console.log("Loading quiz - qi:", qi);
 
     for(i = 1; i < qi; i++){
         let questionData = localStorage.getItem(`q${i}`);
+        console.log(`Loading question ${i}:`, questionData);
+        
         if(questionData) {
             let parsedData = JSON.parse(questionData);
             window[`uq${i}`] = new Question(parsedData.qn, parsedData.prompt, parsedData.answer);
@@ -67,10 +76,25 @@ addEventListener('load', function(){
     }
     
     console.log("Question class instances created! Try typing uq1 in console");
+    console.log("pyoQuiz.currentNode:", pyoQuiz.currentNode);
+
+    if(!pyoQuiz.currentNode) {
+        document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-red-600 mb-4">No Questions Found!</h1>
+                <p class="text-lg text-gray-600 mb-6">It looks like no questions were loaded for this quiz.</p>
+                <button onclick="window.location.href='myo.html'" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Create New Quiz
+                </button>
+            </div>
+        </div>`;
+        return;
+    }
 
      document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
-            <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${pyoQuiz.currentNode.question.qn} of ${parseInt(qi) - 1}</span>
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">${quizName}</h1>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${pyoQuiz.currentNode.question.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -106,6 +130,7 @@ function nextQ(){
     console.log("Current node:", pyoQuiz.currentNode);
     
     let root = pyoQuiz.currentNode;
+    let quizName = JSON.parse(localStorage.getItem('userQuizName') || '"Untitled Quiz"');
     
     let i = pyoQuiz.currentNode.question.qn;
     console.log("Current question number:", i);
@@ -117,10 +142,11 @@ function nextQ(){
     console.log("Next question:", nextQuestion);
     console.log("qi value:", qi, "type:", typeof qi);
 
-    if(nextQuestion.qn == parseInt(qi) - 1){ // Convert qi to number and compare with last question
+    if(nextQuestion.qn == totalQuestions){
         document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
-            <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${parseInt(qi) - 1}</span>
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">${quizName}</h1>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -153,7 +179,7 @@ function nextQ(){
     else {
     document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
             <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${qi}</span>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -192,13 +218,15 @@ function nextQ(){
 function prevQ(){
 
     let root = pyoQuiz.currentNode;
+    let quizName = JSON.parse(localStorage.getItem('userQuizName') || '"Untitled Quiz"');
 
     let prevQuestion = pyoQuiz.prevQuestion();
 
     if(prevQuestion.qn === 1){
         document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
-            <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${prevQuestion.qn} of ${qi}</span>
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">${quizName}</h1>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${prevQuestion.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -230,8 +258,9 @@ function prevQ(){
     }
     else{
     document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
-            <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${prevQuestion.qn} of ${qi}</span>
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">${quizName}</h1>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${prevQuestion.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -270,13 +299,15 @@ function prevQ(){
 function nextQNA(){
 
     let root = pyoQuiz.currentNode;
+    let quizName = JSON.parse(localStorage.getItem('userQuizName') || '"Untitled Quiz"');
 
     let nextQuestion = pyoQuiz.nextQuestion();
 
-    if(nextQuestion.qn == parseInt(qi) - 1){ // Check if it's the last question
+    if(nextQuestion.qn == totalQuestions){
         document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
-            <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${qi}</span>
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">${quizName}</h1>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -309,7 +340,7 @@ function nextQNA(){
     else {
     document.getElementById("QuestionPage").innerHTML = `<div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
             <div class="text-center mb-8">
-                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${qi}</span>
+                <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Question ${nextQuestion.qn} of ${totalQuestions}</span>
             </div>
             
             <div class="mb-8">
@@ -345,7 +376,7 @@ function nextQNA(){
 }
 
 function submit(){
-    // Save the current answer before calculating score
+    
     let currentAnswer = document.getElementById("answer").value;
     let totalQuestions = parseInt(localStorage.getItem("qi"));
     
@@ -370,14 +401,17 @@ function submit(){
             <div class="text-center mb-8">
                 <h1 class="text-5xl font-bold text-gray-800 mb-4">Quiz Complete!</h1>
                 <div class="text-6xl font-bold text-gray-600 mb-4">
-                    ${score}/${parseInt(qi) - 1}
+                    ${score}/${totalQuestions - 1}
                 </div>
                 <p class="text-xl text-gray-600">
                     Thanks For Playing!
                 </p>
             </div>
             
-            <div class="text-center">
+            <div class="text-center flex gap-4 justify-center">
+                <button class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Back to Homepage
+                </button>
                 <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Take Quiz Again
                 </button>
@@ -385,7 +419,7 @@ function submit(){
         </div>
     `;
     
-    console.log(`Your score: ${score}/${parseInt(qi) - 1}`);
+    console.log(`Your score: ${score}/${totalQuestions}`);
     return score;
 }
 
