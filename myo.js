@@ -112,8 +112,8 @@ function AddUQ(){
 
     let currentQi = localStorage.getItem("qi");
     let question = new Question(currentQi, UserQuestionPrompt, UserQuestionAnswer);
-    window[`${localStorage.getItem("userQuizName")}q${currentQi}`] = question;
-    localStorage.setItem(`${localStorage.getItem("userQuizName")}q${currentQi}`, JSON.stringify(question));
+    window[`q${currentQi}`] = question;
+    localStorage.setItem(`q${currentQi}`, JSON.stringify(question));
 
     qi += 1;
     localStorage.setItem("qi", qi);
@@ -157,8 +157,8 @@ function AddUQ(){
                     <button onclick="AddUQ()" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                         Add Question
                     </button>
-                    <button type="button" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Submit Quiz
+                    <button type="button" onclick="submituq()" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Add Question & Submit
                     </button>
                     
                 </div>
@@ -167,7 +167,39 @@ function AddUQ(){
 }
 
 function submituq(){
-    
+    let UserQuestionPrompt = document.getElementById("questionPrompt").value;
+    let UserQuestionAnswer = document.getElementById("correctAnswer").value;
+
+    let currentQi = localStorage.getItem("qi");
+    let question = new Question(currentQi, UserQuestionPrompt, UserQuestionAnswer);
+    window[`q${currentQi}`] = question;
+    localStorage.setItem(`q${currentQi}`, JSON.stringify(question));
+
+    qi += 1;
+    localStorage.setItem("qi", qi);
+
+    document.getElementById("EnterPage").innerHTML = `
+    <div class="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl w-full mx-4">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-green-600 mb-4">🎉 Quiz Created Successfully!</h1>
+            <p class="text-xl text-gray-700 mb-2">Thanks for making a quiz!</p>
+            <p class="text-lg text-gray-600">Your custom quiz has been saved and is ready to play.</p>
+        </div>
+        
+        <div class="flex gap-6 justify-center pt-6">
+            <button type="button" class="bg-gray-600 hover:bg-gray-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Go Back to Homepage
+            </button>
+            <button type="button" onclick="pcc()" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Play Your Quiz
+            </button>
+        </div>
+    </div>`;
+
+}
+
+function pcc(){
+    window.location.href = "pyo.html";
 }
 
 /*
