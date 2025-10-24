@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnowledgeHub Header</title>
+    <script src="Flashcards.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="Flashcards.css">
+</head>
+<body>
+    <!--Header-->
+    <div class="w-[100vw] h-15 bg-white flex items-center justify-center shadow-lg border-b-2 border-gray-200">
+        <h1 class="text-3xl font-bold animated-text drop-shadow-lg">KnowledgeHub</h1>
+    </div>
+
+    <!--Grid Layout-->
+    <div id="contan" class="w-screen h-[calc(100vh-4rem)] grid grid-cols-4 grid-rows-4 gap-2 p-2">
+        <!-- Top row -->
+        <div onclick="revealanswer(1)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box1">
+            <span class="text-lg font-semibold">Tom Brady</span>
+        </div>
+        <div onclick="revealanswer(2)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box2">
+            <span class="text-lg font-semibold">Cal Raleigh</span>
+        </div>
+        <div onclick="revealanswer(3)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box3">
+            <span class="text-lg font-semibold">Steph Curry</span>
+        </div>
+        <div onclick="revealanswer(4)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box4">
+            <span class="text-lg font-semibold">Russel Wilson</span>
+        </div>
+        
+        <!-- Second row -->
+        <div onclick="revealanswer(5)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box5">
+            <span class="text-lg font-semibold">Aaron Judge</span>
+        </div>
+        <!-- Middle large box (spans 2x2) -->
+        <div class="bg-blue-500 border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center col-span-2 row-span-2">
+            <span class="text-2xl font-bold">Practice Mode!</span>
+            <span class="text-2xl font-bold">(Tap Card To Change Sides)</span>
+            <button onclick="enterQuiz()" class="mt-4 bg-blue-200 hover:bg-gray-100 text-blue-600 px-6 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-blue-600">
+                Quiz Me!
+            </button>
+        </div>
+        <div onclick="revealanswer(6)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box6">
+            <span class="text-lg font-semibold">Lebron James</span>
+        </div>
+        
+        <!-- Third row -->
+        <div onclick="revealanswer(7)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box7">
+            <span class="text-lg font-semibold">Cam Skatabo</span>
+        </div>
+        <!-- Middle box continues here (row-span-2) -->
+        <div onclick="revealanswer(8)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box8">
+            <span class="text-lg font-semibold">Shohei Ohtani</span>
+        </div>
+        
+        <!-- Bottom row -->
+        <div onclick="revealanswer(9)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box9">
+            <span class="text-lg font-semibold">Paul George</span>
+        </div>
+        <div onclick="revealanswer(10)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box10">
+            <span class="text-lg font-semibold">Fred Warner</span>
+        </div>
+        <div onclick="revealanswer(11)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box11">
+            <span class="text-lg font-semibold">Bobby Witt Jr</span>
+        </div>
+        <div onclick="revealanswer(12)" class="bg-blue-200 border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-300" id="box12">
+            <span class="text-lg font-semibold">Rudy Gobert</span>
+        </div>
+    </div>
+
+</body>
+</html>
