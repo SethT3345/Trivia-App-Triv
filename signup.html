@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cool.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="signup.js"></script>
+</head>
+<body class="bg-white min-h-screen">
+    <div class="text-center pt-8 pb-4">
+        <h1 class="text-3xl font-bold animated-text drop-shadow-lg leading-relaxed">KnowledgeHub</h1>
+    </div>
+    <div class="flex h-screen items-start justify-center pt-20">
+  <div class="h-[50vh] w-[30vw] bg-gray-100 flex flex-col items-center justify-start space-y-6 p-6">
+    <h1 class="text-3xl font-bold">Sign Up</h1>
+    <input type="email" id="username" class="w-full max-w-md rounded-md border border-gray-300 p-3 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your email" />
+    <input type="password" id="password" class="w-full max-w-md rounded-md border border-gray-300 p-3 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your Password" />
+        <input type="password" class="w-full max-w-md rounded-md border border-gray-300 p-3 text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Confirm your Password" />
+    <div class="flex justify-between items-center w-full max-w-md">
+        <a href="login.html" class="underline">Login</a>
+  <button id="create" onclick="handleSignup()" class="bg-blue-500 text-white px-6 py-2 rounded-md shadow-sm hover:bg-blue-600 transition-colors">Create Account</button>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="cool.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8 text-center">
+        <header class="mb-6">
+            <h1 class="text-4xl font-bold animated-text mb-2">Failed!</h1>
+        </header>
+        
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg p-8 mb-6">
+            <div class="text-6xl font-bold text-gray-800 mb-4">
+                <span id="scoreValue">0</span> / <span id="totalValue">0</span>
+            </div>
+            <div class="text-3xl font-semibold text-gray-700">
+                <span id="percentageValue">0%</span>
+            </div>
+        </div>
+        
+        <div id="scoreMessage" class="text-2xl font-bold text-blue-600 mt-4 mb-6">
+            Great job!
+        </div>
+        
+        <div class="flex gap-4 justify-center mt-8">
+            <a href="chain.html" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-semibold">
+                Try Again
+            </a>
+            <a href="home.html" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 font-semibold">
+                Back to Home
+            </a>
+        </div>
+    </div>
+    
+    <script src="jsscore.js"></script>
+</body>
+</html>

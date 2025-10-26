@@ -1,0 +1,164 @@
+@keyframes textColorFade {
+            0% {
+                background: linear-gradient(45deg, #3B82F6, #8B5CF6, #EC4899, #F59E0B, #10B981);
+                background-size: 300% 300%;
+                background-position: 0% 50%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .animated-text {
+            animation: textColorFade 3s ease-in-out infinite;
+            background: linear-gradient(45deg, #3B82F6, #8B5CF6, #EC4899, #F59E0B, #10B981);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .animated-tex {
+             animation: textColorFade 3s ease-in-out infinite;
+            background: linear-gradient(45deg, #3B82F6, #8B5CF6, #EC4899, #F59E0B, #10B981);
+            background-size: 500% 500%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 3px black;
+            font-size: 3em;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+         .rainbow-outline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .rainbow-outline::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            text-shadow: 
+                -3px -3px 0 #000,
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000,
+                -3px  0   0 #000,
+                 3px  0   0 #000,
+                 0   -3px 0 #000,
+                 0    3px 0 #000;
+        }
+        .quiz-box {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .fit-bg {
+
+            background-size: 110% auto; 
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        @keyframes rainbow {
+            0% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+            14% { box-shadow: 0 0 30px rgba(255, 127, 0, 0.8); }
+            28% { box-shadow: 0 0 30px rgba(255, 255, 0, 0.8); }
+            42% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.8); }
+            57% { box-shadow: 0 0 30px rgba(0, 127, 255, 0.8); }
+            71% { box-shadow: 0 0 30px rgba(75, 0, 130, 0.8); }
+            85% { box-shadow: 0 0 30px rgba(148, 0, 211, 0.8); }
+            100% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+        }
+        
+        button:hover {
+            animation: rainbow 2s linear infinite !important;
+        }
+        .tile {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #d1d5db;
+            background-color: transparent;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            transition: all 0.2s;
+        }
+        
+        @media (min-width: 768px) {
+            .tile {
+                width: 62px;
+                height: 62px;
+                font-size: 2rem;
+            }
+        }
+        
+        .tile-filled {
+            border-color: #6b7280;
+            animation: pop 0.1s ease;
+        }
+        
+        .tile-active-blue {
+            border-color: #3b82f6;
+            border-width: 3px;
+        }
+        .tile-active-red {
+            border-color: #ef4444;
+            border-width: 3px;
+        }
+        
+        .tile-correct-blue {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+        .tile-present-blue {
+            background-color: #60a5fa;
+            border-color: #60a5fa;
+            color: white;
+        }
+        .tile-absent-blue {
+            background-color: #1e3a8a;
+            border-color: #1e3a8a;
+            color: white;
+        }
+        
+        .tile-correct-red {
+            background-color: #ef4444;
+            border-color: #ef4444;
+            color: white;
+        }
+        .tile-present-red {
+            background-color: #f87171;
+            border-color: #f87171;
+            color: white;
+        }
+        .tile-absent-red {
+            background-color: #991b1b;
+            border-color: #991b1b;
+            color: white;
+        }
+        
+        @keyframes flip {
+            0% { transform: rotateX(0); }
+            50% { transform: rotateX(90deg); }
+            100% { transform: rotateX(0); }
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .flip {
+            animation: flip 0.5s ease;
+        }

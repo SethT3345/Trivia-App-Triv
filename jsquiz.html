@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JS Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="cool.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen flex flex-col items-center p-6">
+    <header class="w-full">
+        <div class="max-w-3xl mx-auto text-center py-4">
+            <a href="home.html" class="text-3xl font-bold animated-text drop-shadow-lg leading-relaxed">KnowledgeHub</a>
+        </div>
+    </header>
+    <main class="w-full max-w-3xl bg-white rounded-xl shadow-lg p-6">
+        <header class="flex items-center justify-between mb-4">
+            <h1 class="text-xl font-bold">JavaScript Quiz</h1>
+            <div class="text-sm text-gray-600">Question <span id="currentIndex">1</span> / <span id="totalQuestions">10</span></div>
+        </header>
+
+        
+        <section id="questionCard" class="mb-6">
+            <h2 id="questionText" class="text-2xl font-semibold text-gray-800">Question text goes here</h2>
+        </section>
+        <form id="choicesForm" class="space-y-3" aria-labelledby="questionText">
+            <fieldset id="choicesFieldset" class="space-y-3" aria-label="Answer choices">
+                <legend class="sr-only">Answer choices</legend>
+
+                <label class="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
+                    <input type="radio" name="choice" value="0" class="mr-3 form-radio h-5 w-5 text-blue-600" />
+                    <span class="text-gray-800" data-choice-index="0">Choice A</span>
+                </label>
+
+                <label class="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
+                    <input type="radio" name="choice" value="1" class="mr-3 form-radio h-5 w-5 text-blue-600" />
+                    <span class="text-gray-800" data-choice-index="1">Choice B</span>
+                </label>
+
+                <label class="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
+                    <input type="radio" name="choice" value="2" class="mr-3 form-radio h-5 w-5 text-blue-600" />
+                    <span class="text-gray-800" data-choice-index="2">Choice C</span>
+                </label>
+
+                <label class="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
+                    <input type="radio" name="choice" value="3" class="mr-3 form-radio h-5 w-5 text-blue-600" />
+                    <span class="text-gray-800" data-choice-index="3">Choice D</span>
+                </label>
+            </fieldset>
+        </form>
+        <div class="mt-6 flex items-center justify-between">
+            <button id="prevBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300" disabled>Previous</button>
+            <div class="flex items-center space-x-3">
+                <button id="nextBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Next</button>
+                <button id="submitBtn" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 hidden">Submit</button>
+            </div>
+        </div>
+
+  
+
+    </main>
+    <script src="jsquiz.js"></script>
+</body>
+</html>
