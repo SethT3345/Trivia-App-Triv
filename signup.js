@@ -30,3 +30,6 @@ function handleSignup(){
     window.location.href = "login.html";
 }
 
+function gohp(){
+    window.location.href = "index.html";
+}

@@ -16,3 +16,7 @@
 
   window.resetTwoPlayerState = resetTwoPlayer;
 })();
+
+function gohp(){
+    window.location.href = "index.html";
+}

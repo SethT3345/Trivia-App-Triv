@@ -25,3 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messageEl.className = 'text-2xl font-bold text-orange-600 mt-4';
     }
 });
+
+function gohp(){
+    window.location.href = "index.html";
+}

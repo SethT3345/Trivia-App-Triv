@@ -15,3 +15,7 @@ function handleLogin(){
         throw new Error("Invalid username or password");
     }
 }
+
+function gohp(){
+    window.location.href = "index.html";
+}

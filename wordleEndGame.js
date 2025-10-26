@@ -36,3 +36,7 @@ document.getElementById('homeBtn').addEventListener('click', () => {
     localStorage.setItem('blueWin', false);
     window.location.href = 'home.html';
 });
+
+function gohp(){
+    window.location.href = "index.html";
+}

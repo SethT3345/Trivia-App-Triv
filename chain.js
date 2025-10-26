@@ -241,3 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function gohp(){
+    window.location.href = "index.html";
+}

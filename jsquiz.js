@@ -219,3 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	RenderCurrent();
 });
+
+function gohp(){
+    window.location.href = "index.html";
+}
