@@ -33,6 +33,7 @@ let card12anw = false;
 
 // Global variable for current quiz question index
 let nqi = 0;
+let wrongtimes = 0;
 
 
 
@@ -58,6 +59,7 @@ function revealanswer(cardnum){
 function enterQuiz(){
 
     nqi = 1; // Reset the quiz question index
+    wrongtimes = 0; // Reset wrong answer counter
 
     document.getElementById("contan").innerHTML = `
         <!-- Top row -->
@@ -82,7 +84,7 @@ function enterQuiz(){
         <div class="bg-blue-500 border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center col-span-2 row-span-2">
             <span class="text-2xl font-bold">Quiz Mode!</span>
             <span id="pqb" class="text-4xl mt-5 mb-5 text-white font-bold">Fnd Player Who Wears ${playernums[nqi]}</span>
-            <button class="mt-4 bg-blue-200 hover:bg-gray-100 text-blue-600 px-6 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-blue-600">
+            <button onclick="PMode()" class="mt-4 bg-blue-200 hover:bg-gray-100 text-blue-600 px-6 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-blue-600">
                 Practice Mode
             </button>
         </div>
@@ -135,7 +137,21 @@ function enterQuiz(){
 function checkforcorrect(cardnum){
 
     let cardVar = window[`card${cardnum}`];
-    let answerFlag = window[`card${cardnum}anw`];
+
+
+    if(nqi === 12){
+        let promptelement = document.getElementById("pqb");
+
+        promptelement.innerHTML = `<span id="pqb" class="text-4xl mt-5 mb-5 text-white font-bold">You Guessed Wrong ${wrongtimes} Times</span>`
+
+        let boxElement = document.getElementById(`ifc${cardnum}`);
+
+        boxElement.className = boxElement.className.replace('bg-blue-200', 'bg-green-200');
+        boxElement.className = boxElement.className.replace('hover:bg-blue-300', '');
+        nqi += 1;
+
+    }
+    else{
 
     if(cardVar.number === playernums[nqi]){
         let boxElement = document.getElementById(`ifc${cardnum}`);
@@ -149,6 +165,20 @@ function checkforcorrect(cardnum){
 
     }
     else{
-        console.log("no");
+        let promptelement = document.getElementById("pqb");
+
+        promptelement.innerHTML = `<span id="pqb" class="text-4xl mt-5 mb-5 text-red-500 font-bold animate-pulse">Wrong! Try Again</span>`
+        
+        setTimeout(() => {
+            promptelement.innerHTML = `<span id="pqb" class="text-4xl mt-5 mb-5 text-white font-bold">Find Player Who Wears ${playernums[nqi]}</span>`
+        }, 2000);
+
+        wrongtimes += 1;
     }
 }
+}
+
+function PMode(){
+    window.location.href = "Flashcards.html";
+}
+
