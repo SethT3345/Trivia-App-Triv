@@ -182,3 +182,7 @@ function PMode(){
     window.location.href = "Flashcards.html";
 }
 
+function gohp(){
+    window.location.href = "index.html";
+}
+

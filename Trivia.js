@@ -362,3 +362,7 @@ function submit(){
     console.log(`Your score: ${score}/10`);
     return score;
 }
+
+function gohp(){
+    window.location.href = "index.html";
+}

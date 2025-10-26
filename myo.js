@@ -234,3 +234,7 @@ function pcc(){
                 </div>
             </form>
 */
+
+function gohp(){
+    window.location.href = "index.html";
+}

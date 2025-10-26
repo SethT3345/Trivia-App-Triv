@@ -423,3 +423,6 @@ function submit(){
     return score;
 }
 
+function gohp(){
+    window.location.href = "index.html";
+}
