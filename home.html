@@ -6,28 +6,9 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="cool.css">
+    <script src="home.js"></script>
     <style>
-        .rainbow-outline {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .rainbow-outline::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: -1;
-            text-shadow: 
-                -3px -3px 0 #000,
-                 3px -3px 0 #000,
-                -3px  3px 0 #000,
-                 3px  3px 0 #000,
-                -3px  0   0 #000,
-                 3px  0   0 #000,
-                 0   -3px 0 #000,
-                 0    3px 0 #000;
-        }
+       
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 h-screen flex flex-col">
@@ -41,44 +22,46 @@
     <main class="flex-1 p-6">
         <div class="h-full grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Box 1: JavaScript Quiz -->
-            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
-                <h2 class="animated-tex text-2xl md:text-4xl font-semibold text-gray-700 bg-white px-4 py-2 rounded-md">JavaScript Quiz</h2>
-                <img src="https://via.placeholder.com/150x100/4F46E5/FFFFFF?text=JS" alt="JavaScript Quiz" class="rounded-md shadow-sm">
-                <a href="jsquiz.html" class="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors font-semibold">Start Now</a>
+            <div class="quiz-box rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center
+              justify-center space-y-4 cursor-pointer border-4 border-black" style="background-image: url('words.png');">
+                <h2 class="animated-tex text-2xl md:text-4xl font-semibold">2 Player Worldle</h2>
+                <a href="wordle.html" class="two-player-play bg-red-500 text-white px-6 py-3 rounded-md hover:bg-yellow-600 transition-colors font-semibold">Play</a>
             </div>
             
             <!-- Box 2: Basketball Quiz -->
-            <div class="bg-cover bg-center rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 cursor-pointer relative overflow-hidden border-4 border-black" style="background-image: url('kobe.webp');">
-                <h2 class="animated-tex text-2xl md:text-4xl font-semibold " data-text="Basketball Quiz">Basketball Quiz</h2>
-                <a href="basketballquiz.html" class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition-colors font-semibold shadow-lg">Start Now</a>
+            <div class="quiz-box rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex 
+            flex-col items-center justify-center space-y-4 cursor-pointer border-4 border-black" style="background-image: url('kobe.webp');">
+                <h2 class="animated-tex text-2xl md:text-4xl font-semibold">Basketball Quiz</h2>
+                <a href="basketballquiz.html" class="bg-orange-500 text-white px-6 py-3
+                 rounded-md hover:bg-orange-600 transition-colors font-semibold shadow-lg">Play</a>
             </div>
             
             <!-- Box 3: Flash Cards -->
-            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
-                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700 bg-white px-4 py-2 rounded-md">Flash Cards</h2>
-                <img src="https://via.placeholder.com/150x100/10B981/FFFFFF?text=CARDS" alt="Flashcards" class="rounded-md shadow-sm">
-                <a href="flashcards.html" class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition-colors font-semibold">Start Now</a>
+            <div class="quiz-box rounded-lg shadow-lg hover:shadow-xl transition-all
+             duration-300 p-8 flex flex-col items-center justify-center space-y-4
+              cursor-pointer border-4 border-black" style="background-image: url('music.jpg');">
+                <h2 class="animated-tex text-2xl md:text-4xl font-semibold">Music Chain Quiz</h2>
+                <a href="chain.html"class="bg-yellow-400 text-white px-6 py-3 rounded-mdfont-semibold">Play </a>
             </div>
             
-            <!-- Box 4: Wordle Game -->
-            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
-                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700 bg-white px-4 py-2 rounded-md">Wordle Game</h2>
-                <img src="https://via.placeholder.com/150x100/FBBF24/FFFFFF?text=WORDLE" alt="Wordle Game" class="rounded-md shadow-sm">
-                <a href="wordle.html" class="bg-yellow-500 text-white px-6 py-3 rounded-md hover:bg-yellow-600 transition-colors font-semibold">Start Now</a>
+            <div class="quiz-box rounded-lg shadow-lg hover:shadow-xl transition-all duration-300
+             p-8 flex flex-col items-center justify-center space-y-4 cursor-pointer border-4 border-black" style="background-image: url('FlashCards.webp');">
+                <h2 class="animated-tex text-2xl md:text-4xl font-semibold">Flash Cards</h2>
+                <a href="flashcards.html" class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition-colors font-semibold">Play</a>
             </div>
             
-            <!-- Box 5: Coming Soon -->
-            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
-                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700 bg-white px-4 py-2 rounded-md">Coming Soon</h2>
-                <img src="https://via.placeholder.com/150x100/EC4899/FFFFFF?text=SOON" alt="Coming Soon" class="rounded-md shadow-sm">
-                <button disabled class="bg-gray-400 text-white px-6 py-3 rounded-md cursor-not-allowed font-semibold">Coming Soon</button>
+            <div class="quiz-box rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex 
+            flex-col items-center justify-center space-y-4 cursor-pointer border-4 border-black" style="background-image: url('JsQuiz.jpg');">
+                <h2 class="animated-tex text-2xl md:text-4xl font-semibold">JavaScript Quiz</h2>
+                <a href="jsquiz.html" class="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors font-semibold">Play</a>
             </div>
-            
-            <!-- Box 6: Coming Soon -->
-            <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-8 flex flex-col items-center justify-center space-y-4 hover:bg-opacity-80 cursor-pointer">
-                <h2 class="animated-text text-2xl md:text-4xl font-semibold text-gray-700 bg-white px-4 py-2 rounded-md">Coming Soon</h2>
-                <img src="https://via.placeholder.com/150x100/9333EA/FFFFFF?text=SOON" alt="Coming Soon" class="rounded-md shadow-sm">
-                <button disabled class="bg-gray-400 text-white px-6 py-3 rounded-md cursor-not-allowed font-semibold">Coming Soon</button>
+           
+            <div class="quiz-box rounded-lg shadow-lg hover:shadow-xl transition-all 
+            duration-300 p-8 flex flex-col items-center justify-center space-y-4 
+            cursor-pointer border-4 border-black fit-bg" style="background-image: url('make.jpg');">
+                <h2 class="animated-tex text-2xl md:text-4xl font-semibold">Create A Quiz</h2>
+                <a href="jsquiz.html" class="bg-purple-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors font-semibold">Create</a>
+            </div>
             </div>
         </div>
     </main>

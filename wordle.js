@@ -23,7 +23,26 @@ const WORDS = [
     'GUEST', 'GUIDE', 'HAPPY', 'HARRY', 'HEART', 'HEAVY', 'HENCE', 'HENRY', 'HORSE', 'HOTEL',
     'HOUSE', 'HUMAN', 'IDEAL', 'IMAGE', 'INDEX', 'INNER', 'INPUT', 'ISSUE', 'JAPAN', 'JIMMY',
     'JOINT', 'JONES', 'JUDGE', 'KNOWN', 'LABEL', 'LARGE', 'LASER', 'LATER', 'LAUGH', 'LAYER',
-    'LEARN', 'LEASE', 'LEAST', 'LEAVE', 'LEGAL', 'LEMON', 'LEVEL', 'LEWIS', 'LIGHT', 'LIMIT'
+    'LEARN', 'LEASE', 'LEAST', 'LEAVE', 'LEGAL', 'LEMON', 'LEVEL', 'LEWIS', 'LIGHT', 'LIMIT','TABLE', 
+    'SOUND', 'CLOUD', 'FLAME', 'GRAIN', 'PLANT', 'WHITE', 'GREEN', 'PEACH', 'MANGO', 'BERRY', 'STONE', 'BRICK',
+     'BRUSH', 'PAINT', 'BLUSH', 'STORM', 'NIGHT', 'UNDER', 'RIVER', 'OCEAN', 'STEEL', 'SWORD',
+      'ANGEL', 'SMILE', 'SLEEP', 'TRUST', 'PEACE', 'MUSIC', 'PIANO', 'WATER', 'HONEY', 'SUGAR',
+       'SPICE', 'WORLD', 'SPACE', 'STARS', 'WINDS', 'BLAZE', 'ROUGH', 'SHARP', 'SWEET', 'SALTY',
+        'CRISP', 'SOLID', 'QUIET', 'BRAVE', 'LOYAL', 'NOBLE', 'MOSSY', 'LEAFY', 'ROCKY', 'SANDY', 'SHINY', 
+        'FOGGY', 'DUSTY', 'HOPES', 'GOALS', 'SHINE', 'SPARK', 'FLARE', 'CHILL',
+         'MUDDY', 'SNOWY', 'FIERY', 'SUNNY', 'RAINY', 'WINDY', 'FROST', 'FLAKE', 'MELTS', 'PLAIN', 'DESERT', 
+         'BLOOM', 'TIGER', 'ZEBRA', 'CAMEL', 'EAGLE', 'RAVEN', 'ROBIN', 'MOUSE', 'SHEEP', 'GOATS', 'WHALE', 'SHARK',
+          'CORAL', 'PEARL', 'SHELL', 'TORCH', 'JEWEL', 'ARROW', 'SPEAR', 'CHARM', 'MAGIC', 'WITCH', 'SAINT', 'MERCY', 
+          'HONOR', 'TRUTH', 'PRIDE', 'ENVY', 'GREED', 'WRATH', 'UNITY', 'WATCH', 'CLASH', 'WOUND', 'NURSE', 'STORY', 'NOVEL',
+           'BOOKS', 'PAGES', 'WORDS', 'WRITE', 'TEACH', 'STUDY', 'SCORE', 'TITLE', 'QUEEN', 'JOKER', 'REALM', 'TOWNS', 'ROADS',
+            'TRAIL', 'SIGNS', 'WALLS', 'GATES', 'DOORS', 'LOCKS', 'KEYES', 'ROOFS', 'BEAMS', 'ROOMS', 'COUCH', 'PLATE', 'SPOON',
+             'KNIFE', 'SIGHT', 'THINK', 'SHOUT', 'SPEAK', 'VOICE', 'PHOTO', 'COLOR', 'SHADE', 'TONEY', 'GRAPE', 'SNACK', 'SAUCE', 'ROAST', 
+             'FRIED', 'BLEND', 'SHAKE', 'COCOA', 'SYRUP', 'MELON', 'GUAVA', 'DOUGH', 'PIZZA', 'PASTA', 'BACON', 'STEAK', 'GRILL', 'CURRY',
+              'RAMEN', 'SALAD', 'ONION', 'OLIVE', 'BASIL', 'THYME', 'CANDY', 'FUDGE', 'DONUT', 'SODAS', 'STRAW', 'PAPER', 'RULER', 'PHONE',
+               'MOUSE', 'CABLE', 'WIRES', 'BEATS', 'DRUMS', 'FLUTE', 'BRASS', 'CELLO', 'CHORD', 'CHOIR', 'MOVIE', 'PLOTS', 'POEMS', 'RANKS', 
+               'FORGE', 'SHAPE', 'CARVE', 'MODEL', 'STONE', 'METAL', 'WOODS', 'BOLTS', 'SCREW', 'NAILS', 'HAMMER', 'GLUEY', 'BOXES', 'CRATE',
+                'SHELF', 'FRAME', 'CHAIN', 'TORCH', 'SMOKE', 'ASHES', 'FLOOD', 'WAVES', 'DIVER', 'CLIFF', 'CAVES', 'MOUNT', 'TREES', 'ROOTS',
+                 'VINES', 'FLORA', 'FAUNA', 'BEAST', 'EAGLE', 'RAVEN', 'SNAKE', 'FROGS', 'FISHY', 'PEARL', 'STARS', 'MOONS', 'FIRES', 'RULES',
 ];
 
 let targetWord;
@@ -234,7 +253,7 @@ function checkGuess() {
     }
     
     setTimeout(() => {
-        // Check if they guessed the word correctly and add score
+   
         if (currentGuess === targetWord) {
             if (blueTurn) {
                 blueScore += 1;
@@ -248,7 +267,7 @@ function checkGuess() {
         
         saveScores();
         
-        // Check if either player has won (reached 3 points)
+  
         if (blueScore >= 3) {
             blueWin = true;
             localStorage.setItem('blueWin', 'true');
@@ -316,7 +335,7 @@ function showMessage(text) {
 function endGame(won) {
     gameOver = true;
     currentGame += 1; // Increment game number
-    saveScores(); // Save the new game number (including currentGame)
+    saveScores(); 
     
     setTimeout(() => {
         const modal = document.getElementById('gameOverModal');
@@ -338,6 +357,18 @@ function endGame(won) {
         
         modal.classList.remove('hidden');
     }, 2000);
+}
+
+// Check URL for reset parameter
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('reset') === 'true') {
+  localStorage.setItem('redScore', '0');
+  localStorage.setItem('blueScore', '0');
+  localStorage.setItem('redWin', 'false');
+  localStorage.setItem('blueWin', 'false');
+  
+  // Remove the parameter from URL
+  window.history.replaceState({}, '', 'wordle.html');
 }
 
 function handleGame(){
