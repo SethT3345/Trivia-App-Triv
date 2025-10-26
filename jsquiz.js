@@ -153,13 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		qText.textContent = node.q.text;
 		currentIndexEl.textContent = idx + 1;
 		totalQuestionsEl.textContent = QList.length;
-		
-		// populate choices
+
 		choiceSpans.forEach((span, i) => {
 			span.textContent = node.q.choices[i] || '';
 		});
 		
-		// restore selection
+
 		choiceInputs.forEach((input, i) => {
 			input.checked = node.answer === i;
 		});
@@ -205,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	submitBtn.addEventListener('click', () => {
 		saveToNode();
-		// compute score by scanning nodes
+		
 		let score = 0;
 		let node = QList.head;
 		while (node) {

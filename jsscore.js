@@ -1,19 +1,12 @@
-// jsscore.js - Display quiz results
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Get score from localStorage
     const score = localStorage.getItem('quizScore') || 0;
     const total = localStorage.getItem('quizTotal') || 0;
-    
-    // Calculate percentage
     const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
-    
-    // Update DOM elements
+
     document.getElementById('scoreValue').textContent = score;
     document.getElementById('totalValue').textContent = total;
     document.getElementById('percentageValue').textContent = percentage + '%';
-    
-    // Add message based on score
     const messageEl = document.getElementById('scoreMessage');
     if (percentage >= 100) {
         messageEl.textContent = 'Perfect Score! 🎉';

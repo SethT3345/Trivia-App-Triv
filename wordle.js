@@ -1,4 +1,3 @@
-// Word list
 const WORDS = [
     'ABOUT', 'ABOVE', 'ABUSE', 'ACTOR', 'ACUTE', 'ADMIT', 'ADOPT', 'ADULT', 'AFTER', 'AGAIN',
     'AGENT', 'AGREE', 'AHEAD', 'ALARM', 'ALBUM', 'ALERT', 'ALIKE', 'ALIVE', 'ALLOW', 'ALONE',
@@ -63,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initGame();
 });
 
-// Load scores from local storage when page loads
 function loadScores() {
     const savedRedScore = localStorage.getItem('redScore');
     const savedBlueScore = localStorage.getItem('blueScore');
@@ -79,12 +77,10 @@ function loadScores() {
         currentGame = parseInt(savedCurrentGame);
     }
     
-    // Update score display
     document.getElementById('redScore').textContent = redScore;
     document.getElementById('blueScore').textContent = blueScore;
 }
 
-// Save scores to local storage
 function saveScores() {
     localStorage.setItem('redScore', redScore);
     localStorage.setItem('blueScore', blueScore);
@@ -176,7 +172,6 @@ function updateGrid() {
             tile.classList.remove('tile-filled');
         }
         
-        // Add background color to current row tiles based on whose turn it is
         if (blueTurn) {
             tile.style.backgroundColor = '#1a65c8ff';
             tile.style.borderColor = '#b3b9c2ff';
@@ -223,26 +218,23 @@ function checkGuess() {
     for (let i = 0; i < 5; i++) {
         const tile = document.getElementById(`tile-${currentRow}-${i}`);
         setTimeout(() => {
-            // Remove the light background colors but keep border
             tile.style.backgroundColor = '';
             
             tile.classList.add('flip');
             
-            // Add normal Wordle colors (green, yellow, gray)
             if (result[i] === 'correct') {
-                tile.style.backgroundColor = '#10b981'; // Green
+                tile.style.backgroundColor = '#10b981';
             } else if (result[i] === 'present') {
-                tile.style.backgroundColor = '#eab308'; // Yellow
+                tile.style.backgroundColor = '#eab308';
             } else {
-                tile.style.backgroundColor = '#4b5563'; // Gray
+                tile.style.backgroundColor = '#4b5563';
             }
             
-            // Add team color border
             if (blueTurn) {
-                tile.style.borderColor = '#3b82f6'; // Blue border
+                tile.style.borderColor = '#3b82f6';
                 tile.style.borderWidth = '3px';
             } else if (redTurn) {
-                tile.style.borderColor = '#ef4444'; // Red border
+                tile.style.borderColor = '#ef4444';
                 tile.style.borderWidth = '3px';
             }
             
@@ -267,7 +259,6 @@ function checkGuess() {
         
         saveScores();
         
-  
         if (blueScore >= 3) {
             blueWin = true;
             localStorage.setItem('blueWin', 'true');
@@ -334,7 +325,7 @@ function showMessage(text) {
 
 function endGame(won) {
     gameOver = true;
-    currentGame += 1; // Increment game number
+    currentGame += 1;
     saveScores(); 
     
     setTimeout(() => {
@@ -359,15 +350,12 @@ function endGame(won) {
     }, 2000);
 }
 
-// Check URL for reset parameter
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('reset') === 'true') {
   localStorage.setItem('redScore', '0');
   localStorage.setItem('blueScore', '0');
   localStorage.setItem('redWin', 'false');
   localStorage.setItem('blueWin', 'false');
-  
-  // Remove the parameter from URL
   window.history.replaceState({}, '', 'wordle.html');
 }
 
@@ -377,10 +365,7 @@ function handleGame(){
         return;
     }
     
-    // Game 1, 3, 5 (odd): Blue starts
-    // Game 2, 4 (even): Red starts
     if (currentGame % 2 === 1) {
-        // Odd games: Blue starts on row 0, Red on row 1, etc.
         if (currentRow % 2 === 0) {
             blueTurn = true;
             redTurn = false;
@@ -389,7 +374,6 @@ function handleGame(){
             redTurn = true;
         }
     } else {
-        // Even games: Red starts on row 0, Blue on row 1, etc.
         if (currentRow % 2 === 0) {
             blueTurn = false;
             redTurn = true;
@@ -444,7 +428,6 @@ function announceWinner() {
             title.className = 'text-3xl font-bold text-center mb-4 text-red-500';
         }
         
-        // Reset scores AND game counter in localStorage
         localStorage.setItem('redScore', 0);
         localStorage.setItem('blueScore', 0);
         localStorage.setItem('currentGame', 1);

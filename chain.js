@@ -206,12 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener("click", function () {
             const answer = button.textContent.trim();
             const correctAnswer = QList.current?.answer;
-            
-            // Disable ONLY the clicked button permanently
             this.disabled = true;
             this.classList.add('opacity-50', 'cursor-not-allowed');
-            
-            // Turn clicked button grey permanently
             const colorClasses = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500', 
                                    'bg-blue-500', 'bg-indigo-500', 'bg-purple-500', 'bg-pink-500'];
             colorClasses.forEach(cls => this.classList.remove(cls));

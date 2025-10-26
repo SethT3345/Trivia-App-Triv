@@ -6,22 +6,6 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="cool.css">
-    <style>
-        @keyframes rainbow {
-            0% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
-            14% { box-shadow: 0 0 30px rgba(255, 127, 0, 0.8); }
-            28% { box-shadow: 0 0 30px rgba(255, 255, 0, 0.8); }
-            42% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.8); }
-            57% { box-shadow: 0 0 30px rgba(0, 127, 255, 0.8); }
-            71% { box-shadow: 0 0 30px rgba(75, 0, 130, 0.8); }
-            85% { box-shadow: 0 0 30px rgba(148, 0, 211, 0.8); }
-            100% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
-        }
-        
-        button:hover {
-            animation: rainbow 2s linear infinite !important;
-        }
-    </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
     <div class="text-center pt-4 md:pt-8 pb-2 md:pb-4">
@@ -32,7 +16,7 @@
         <h1 id="question" class="text-center text-lg md:text-2xl font-semibold mb-4 md:mb-8 px-4">Sample Question</h1>
         
         <div class="container mx-auto px-2 md:px-4">
-            <!-- Row 1: Red -->
+        
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-red-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Kanye West</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-red-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Drake</button>
@@ -43,7 +27,6 @@
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-red-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">The Eagles</button>
             </div>
             
-            <!-- Row 2: Orange -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-orange-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Travis Scott</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-orange-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Lil Uzi Vert</button>
@@ -52,8 +35,6 @@
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-orange-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Grammys</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-orange-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">6'6</button>
             </div>
-            
-            <!-- Row 3: Yellow -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-yellow-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Pearl Jam</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-yellow-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Freddie Mercury</button>
@@ -62,8 +43,6 @@
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-yellow-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Donda</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-yellow-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">The Chiefs</button>
             </div>
-            
-            <!-- Row 4: Green -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-green-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Alicia Keys</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-green-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Bruno Mars</button>
@@ -71,29 +50,21 @@
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-green-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Miley Cyrus</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-green-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">1991</button>
             </div>
-            
-            <!-- Row 5: Blue -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-blue-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Ariana Grande</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-blue-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Michael Jordan</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-blue-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">City of Gods</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-blue-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">12</button>
             </div>
-            
-            <!-- Row 6: Indigo -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-indigo-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Jay-Z</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-indigo-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">The Voice</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-indigo-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Kendrick Lamar</button>
             </div>
-            
-            <!-- Row 7: Purple -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-purple-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Kobe Bryant</button>
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-purple-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">5'5</button>
             </div>
-            
-            <!-- Row 8: Purple -->
             <div class="flex flex-wrap justify-center gap-1 md:gap-4 mb-2 md:mb-4">
                 <button class="answer py-2 px-3 md:py-4 md:px-8 bg-purple-500 text-white font-semibold text-sm md:text-lg hover:-translate-y-1 hover:scale-105 transition-transform cursor-pointer">Superbowl</button>
             </div>

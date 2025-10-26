@@ -1,6 +1,5 @@
 (function(){
-  function resetTwoPlayerStateLocal(){
-    // Clear ALL localStorage to ensure fresh start
+  function resetTwoPlayer(){
     localStorage.clear();
   }
 
@@ -15,5 +14,5 @@
     });
   });
 
-  window.resetTwoPlayerState = resetTwoPlayerStateLocal;
+  window.resetTwoPlayerState = resetTwoPlayer;
 })();
