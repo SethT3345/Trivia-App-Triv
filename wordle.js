@@ -438,4 +438,9 @@ function announceWinner() {
 
 document.getElementById('playAgainBtn').addEventListener('click', () => {
     location.reload();
+
 });
+
+function gohp(){
+    window.location.href = "index.html";
+}
