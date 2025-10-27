@@ -8,14 +8,10 @@ function handleLogin(){
     
     if(matcheduser){
         alert("Login Successful");
-        window.location.href = "home.html";
+        window.location.href = "index.html";
         
     } else {
         alert("Invalid username or password!");
         throw new Error("Invalid username or password");
     }
-}
-
-function gohp(){
-    window.location.href = "index.html";
 }
