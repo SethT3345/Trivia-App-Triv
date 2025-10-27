@@ -10,24 +10,19 @@
 <body class="bg-white min-h-screen">
     <header class="bg-white shadow-md border-b border-gray-200 flex-shrink-0">
         <div class="container mx-auto px-4">
-            <a onclick="gohp()" class="block">
+            <a href="home.html" class="block">
                 <h1 class="text-3xl md:text-5xl font-bold animated-text drop-shadow-lg leading-relaxed text-center py-4 md:py-6 cursor-pointer hover:opacity-80 transition-opacity">KnowledgeHub</h1>
             </a>
         </div>
     </header>
 
     <div class="max-w-lg mx-auto px-2 md:px-4 py-4 md:py-8">
-
         <div class="text-center mb-3 md:mb-4">
             <h2 id="turnIndicator" class="text-xl md:text-3xl font-bold">Player's Turn</h2>
         </div>
 
+        <div id="gameGrid" class="mb-4 md:mb-6"></div>
 
-        <div id="gameGrid" class="mb-4 md:mb-6">
-           
-        </div>
-
-    
         <div class="flex justify-between items-center px-2 md:px-4 -mb-3 md:-mb-5">
             <div class="text-lg md:text-2xl font-bold text-red-500 flex items-center gap-2 md:gap-3 bg-white px-2 md:px-4 py-1 md:py-2 rounded-lg shadow-md">
                 <h1>Red:</h1>
@@ -39,13 +34,10 @@
             </div>
         </div>
 
-      
         <p id="message" class="text-center text-gray-900 text-base md:text-xl font-semibold min-h-6"></p>
     </div>
 
-
     <div class="max-w-2xl mx-auto px-2 md:px-4 mb-4 md:mb-8">
- 
         <div class="flex justify-center gap-0.5 md:gap-1 mb-1 md:mb-2">
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 md:py-4 px-2 md:px-3 rounded min-w-[35px] md:min-w-[43px] text-xs md:text-sm transition-colors key-btn" data-key="Q">Q</button>
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 md:py-4 px-2 md:px-3 rounded min-w-[35px] md:min-w-[43px] text-xs md:text-sm transition-colors key-btn" data-key="W">W</button>
@@ -70,6 +62,7 @@
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 md:py-4 px-2 md:px-3 rounded min-w-[35px] md:min-w-[43px] text-xs md:text-sm transition-colors key-btn" data-key="K">K</button>
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 md:py-4 px-2 md:px-3 rounded min-w-[35px] md:min-w-[43px] text-xs md:text-sm transition-colors key-btn" data-key="L">L</button>
         </div>
+
         <div class="flex justify-center gap-0.5 md:gap-1">
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 md:py-4 px-3 md:px-6 rounded text-xs transition-colors" id="enterBtn">ENTER</button>
             <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 md:py-4 px-2 md:px-3 rounded min-w-[35px] md:min-w-[43px] text-xs md:text-sm transition-colors key-btn" data-key="Z">Z</button>
@@ -95,7 +88,7 @@
             </button>
         </div>
     </div>
+
     <script src="wordle.js"></script>
 </body>
-
 </html>
