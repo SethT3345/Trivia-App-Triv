@@ -409,7 +409,7 @@ function submit(){
             </div>
             
             <div class="text-center flex gap-4 justify-center">
-                <button class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button onclick="gohp()" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Back to Homepage
                 </button>
                 <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
