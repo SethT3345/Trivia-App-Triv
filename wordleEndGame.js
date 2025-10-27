@@ -34,9 +34,5 @@ document.getElementById('homeBtn').addEventListener('click', () => {
     localStorage.setItem('currentGame', 1);
     localStorage.setItem('redWin', false);
     localStorage.setItem('blueWin', false);
-    window.location.href = 'home.html';
+    window.location.href = 'index.html';
 });
-
-function gohp(){
-    window.location.href = "index.html";
-}
